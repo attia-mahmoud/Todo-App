@@ -1,0 +1,16 @@
+main {
+  background-image: url("../../assets/images/bg-mobile-light.jpg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-color: var(--clr-light-gray-200);
+  height: 100vh;
+  overflow: hidden;
+  padding: 3rem 2rem;
+}
+
+[data-theme="dark"] {
+  main {
+    background-image: url("../../assets/images/bg-mobile-dark.jpg");
+    background-color: var(--clr-dark-gray-600);
+  }
+}

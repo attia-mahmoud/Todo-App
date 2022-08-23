@@ -1,0 +1,25 @@
+@use "../utilities/flow" as *;
+
+#input-field {
+  background-color: var(--clr-light-gray-100);
+  font-size: var(--fs-200);
+  padding: 1rem 1.2rem;
+  width: min(100%, 30rem);
+  border: none;
+  border-radius: 6px;
+  @include flex(0.5rem, row, flex-start, center);
+
+  input {
+    padding-left: 10px;
+    border: none;
+    width: 100%;
+  }
+}
+
+[data-theme="dark"] {
+  #input-field,
+  input {
+    background-color: var(--clr-dark-gray-500);
+    color: var(--clr-dark-gray-100);
+  }
+}

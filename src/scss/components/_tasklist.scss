@@ -1,0 +1,42 @@
+@use "../utilities/flow" as *;
+
+#tasks-container {
+  height: 25rem;
+  width: min(100%, 30rem);
+  border-radius: 6px;
+  background-color: var(--clr-light-gray-100);
+  position: relative;
+  > div:first-child {
+    max-height: 85%;
+    overflow-y: scroll;
+  }
+
+  .task-container:first-child {
+    border-radius: 6px 6px 0 0;
+  }
+}
+
+#tasks-footer {
+  position: absolute;
+  bottom: 1rem;
+  width: 100%;
+  padding: 0rem 1.5rem;
+  @include flex(1rem, row, space-between, center);
+  font-size: var(--fs-100);
+  color: var(--clr-light-gray-400);
+
+  p:last-child {
+    cursor: pointer;
+  }
+}
+
+[data-theme="dark"] {
+  #tasks-container {
+    background-color: var(--clr-dark-gray-500);
+    color: var(--clr-dark-gray-100);
+  }
+
+  #tasks-footer {
+    color: var(--clr-dark-gray-300);
+  }
+}

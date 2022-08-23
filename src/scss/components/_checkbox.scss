@@ -1,0 +1,27 @@
+@use "../utilities/flow" as *;
+
+#checkbox {
+  height: 23px;
+  aspect-ratio: 1;
+  background-color: transparent;
+  border: 1px solid var(--clr-light-gray-300);
+  border-radius: 50%;
+  display: inline-block;
+  @include flex(1rem, row, center, center);
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+[data-status="COMPLETED"] {
+  #checkbox {
+    background-image: var(--clr-primary-gradient);
+  }
+}
+
+[data-theme="dark"] {
+  #checkbox {
+    border-color: var(--clr-dark-gray-400);
+  }
+}

@@ -1,0 +1,19 @@
+@use "../utilities/flow" as *;
+
+#authenticated-screen {
+  margin-top: 2rem;
+  @include flex(1rem, column, flex-start, center);
+  height: 100vh;
+
+  #hint {
+    margin-top: 2rem;
+    color: var(--clr-light-gray-400);
+    font-size: var(--fs-200);
+  }
+}
+
+[data-theme="dark"] {
+  #hint {
+    color: var(--clr-dark-gray-400);
+  }
+}

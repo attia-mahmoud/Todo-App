@@ -1,0 +1,6 @@
+@use "../utilities/flow" as *;
+
+#unauthenticated-screen {
+  @include flex(1rem, column, center, center);
+  height: 100vh;
+}

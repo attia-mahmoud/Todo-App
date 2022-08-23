@@ -1,0 +1,15 @@
+@use "../utilities/_flow.scss" as *;
+
+header {
+  @include flex(1rem, row, space-between, center);
+
+  h1 {
+    color: var(--clr-light-gray-100);
+    font-weight: 700;
+    letter-spacing: 8px;
+  }
+
+  img {
+    cursor: pointer;
+  }
+}

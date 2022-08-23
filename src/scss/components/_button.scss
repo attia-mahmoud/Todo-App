@@ -1,0 +1,48 @@
+@use "../utilities/flow" as *;
+
+.button {
+  @include flex(1rem, row, center, center);
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  background-color: transparent;
+  border: 2px solid var(--clr-dark-gray-600);
+  font-size: var(--fs-500);
+  cursor: pointer;
+  img {
+    max-width: 1.5rem;
+  }
+  transition: all 500ms ease-in-out;
+}
+
+#signIn-button {
+  transform: translateY(1000%);
+}
+
+#getStarted-button {
+  border: none;
+  animation: 3s ease 0s infinite beat;
+  font-size: var(--fs-600);
+  cursor: pointer;
+}
+
+@keyframes beat {
+  0%,
+  50%,
+  100% {
+    transform: scale(1);
+  }
+  30%,
+  80% {
+    transform: scale(0.97);
+  }
+}
+
+[data-theme="dark"] {
+  .button {
+    background-color: var(--clr-dark-gray-100);
+  }
+
+  #getStarted-button {
+    color: var(--clr-light-gray-200);
+  }
+}

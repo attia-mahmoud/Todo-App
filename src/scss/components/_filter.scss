@@ -1,0 +1,21 @@
+@use "../utilities/flow" as *;
+
+#filter {
+  width: 100%;
+  padding-block: 0.8rem;
+  border-radius: 6px;
+  background-color: var(--clr-light-gray-100);
+  @include flex(1.5rem, row, center, center);
+  color: var(--clr-light-gray-400);
+  font-size: var(--fs-200);
+  p {
+    font-weight: 700;
+  }
+}
+
+[data-theme="dark"] {
+  #filter {
+    background-color: var(--clr-dark-gray-500);
+    color: var(--clr-dark-gray-300);
+  }
+}
