@@ -13,6 +13,7 @@ const Filter = ({ setFilter, filter }) => {
             color: filter === option.toUpperCase() && "hsl(220, 98%, 61%)",
           }}
           onClick={() => handleClick(option.toUpperCase())}
+          key={option}
         >
           {option || "All"}
         </p>

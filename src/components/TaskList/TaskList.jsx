@@ -1,51 +1,62 @@
-import React, { useContext } from "react";
-import { db } from "../../Firebase";
-import { updateDoc, deleteDoc, doc } from "firebase/firestore";
+import React, { useContext, useState } from "react";
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { Task } from "../Task";
 import { UserContext } from "../App.js";
-import { getRecords, filterRecords } from "../../helpers/utils";
+import { filterRecords, handleDelete, handleClick } from "../../helpers/utils";
 
 const TaskList = ({ records, setRecords, filter }) => {
   const { user } = useContext(UserContext);
 
-  const handleClick = async (task) => {
-    const status = task.status === "ACTIVE" ? "COMPLETED" : "ACTIVE";
-    const docRef = doc(db, "tasks_records", task.id);
-    await updateDoc(docRef, { status });
-    getRecords(user, setRecords);
-  };
+  const [tasks, updateTasks] = useState([]);
 
-  const handleDelete = async (task) => {
-    if (task) {
-      const docRef = doc(db, "tasks_records", task.id);
-      await deleteDoc(docRef);
-    } else {
-      const completedTasks = records.filter(
-        (record) => record.status === "COMPLETED"
-      );
-      for (let i = 0; i < completedTasks.length; i++) {
-        const docRef = doc(db, "tasks_records", completedTasks[i].id);
-        await deleteDoc(docRef);
-      }
-    }
-    getRecords(user, setRecords);
-  };
+  function handleOnDragEnd(result) {
+    if (!result.destination) return;
+    const items = Array.from(tasks);
+    const [reorderedItem] = items.splice(result.source.index, 1);
+    items.splice(result.destination.index, 0, reorderedItem);
+
+    updateTasks(items);
+  }
+
+  React.useEffect(() => {
+    updateTasks(records);
+  }, [records]);
 
   return (
     <div id="tasks-container">
-      <div>
-        {filterRecords(records, filter)?.map((task, i) => (
-          <Task
-            task={task}
-            key={i}
-            handleClick={handleClick}
-            handleDelete={handleDelete}
-          />
-        ))}
-      </div>
+      <DragDropContext onDragEnd={handleOnDragEnd}>
+        <Droppable droppableId="tasks">
+          {(provided) => (
+            <div {...provided.droppableProps} ref={provided.innerRef}>
+              {filterRecords(tasks, filter)?.map((task, index) => (
+                <Draggable key={task.id} draggableId={task.id} index={index}>
+                  {(provided) => (
+                    <div
+                      {...provided.draggableProps}
+                      {...provided.dragHandleProps}
+                      ref={provided.innerRef}
+                    >
+                      <Task
+                        task={task}
+                        handleClick={() => handleClick(user, setRecords, task)}
+                        handleDelete={() =>
+                          handleDelete(user, records, setRecords, task)
+                        }
+                      />
+                    </div>
+                  )}
+                </Draggable>
+              ))}
+              {provided.placeholder}
+            </div>
+          )}
+        </Droppable>
+      </DragDropContext>
       <div id="tasks-footer">
         <p>{`${filterRecords(records, "ACTIVE")?.length} items left`}</p>
-        <p onClick={() => handleDelete()}>Clear Completed</p>
+        <p onClick={() => handleDelete(user, records, setRecords)}>
+          Clear Completed
+        </p>
       </div>
     </div>
   );

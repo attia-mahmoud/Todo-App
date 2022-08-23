@@ -1,9 +1,9 @@
 import check from "../../assets/images/icon-check.svg";
 
-const Checkbox = ({ task, handleClick }) => {
+const Checkbox = ({ status, handleClick }) => {
   return (
-    <div id="checkbox" onClick={() => handleClick(task)}>
-      {task?.status === "COMPLETED" && <img src={check} alt="check" />}
+    <div id="checkbox" onClick={handleClick}>
+      {status === "COMPLETED" && <img src={check} alt="check" />}
     </div>
   );
 };
