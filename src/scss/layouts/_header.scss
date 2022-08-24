@@ -2,7 +2,8 @@
 
 header {
   @include flex(1rem, row, space-between, center);
-
+  width: min(100%, 30rem);
+  margin: 0 auto;
   h1 {
     color: var(--clr-light-gray-100);
     font-weight: 700;

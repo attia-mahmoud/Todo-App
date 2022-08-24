@@ -8,9 +8,10 @@
   border-radius: 50%;
   display: inline-block;
   @include flex(1rem, row, center, center);
+  cursor: pointer;
 
   &:hover {
-    cursor: pointer;
+    border-color: var(--clr-primary-blue);
   }
 }
 

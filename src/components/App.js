@@ -12,20 +12,26 @@ function App() {
   const [user, setUser] = useState(null);
   const value = { user, setUser };
 
-  onAuthStateChanged(auth, (user) => {
-    if (user) setUser(user);
-    else setUser(null);
+  useEffect(() => {
+    function getUser() {
+      onAuthStateChanged(auth, (user) => {
+        if (user) setUser(user);
+        else setUser(null);
+      });
+    }
+
+    getUser();
   });
 
   return (
-    <div className="ff-josefin" data-theme={theme}>
-      <UserContext.Provider value={value}>
+    <UserContext.Provider value={value}>
+      <div className="ff-josefin" data-theme={theme}>
         <main>
           <Header theme={theme} setTheme={setTheme} />
           {user ? <AuthenticatedScreen /> : <UnauthenticatedScreen />}
         </main>
-      </UserContext.Provider>
-    </div>
+      </div>
+    </UserContext.Provider>
   );
 }
 

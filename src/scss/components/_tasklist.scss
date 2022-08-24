@@ -14,6 +14,19 @@
   .task-container:first-child {
     border-radius: 6px 6px 0 0;
   }
+
+  ::-webkit-scrollbar-thumb {
+    opacity: 0;
+  }
+  ::-webkit-scrollbar {
+    width: 7px;
+    height: 2;
+  }
+  :hover::-webkit-scrollbar-thumb {
+    opacity: 1;
+    border-radius: 8px;
+    background-color: var(--clr-light-gray-300);
+  }
 }
 
 #tasks-footer {
@@ -34,6 +47,10 @@
   #tasks-container {
     background-color: var(--clr-dark-gray-500);
     color: var(--clr-dark-gray-100);
+
+    :hover::-webkit-scrollbar-thumb {
+      background-color: var(--clr-light-gray-500);
+    }
   }
 
   #tasks-footer {

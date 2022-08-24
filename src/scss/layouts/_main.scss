@@ -1,16 +1,25 @@
+@use "../abstracts/breakpoints" as *;
+
 main {
   background-image: url("../../assets/images/bg-mobile-light.jpg");
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: 100% 30%;
   background-color: var(--clr-light-gray-200);
   height: 100vh;
   overflow: hidden;
   padding: 3rem 2rem;
+  @include mq(large) {
+    background-image: url("../../assets/images/bg-desktop-light.jpg");
+  }
 }
 
 [data-theme="dark"] {
   main {
     background-image: url("../../assets/images/bg-mobile-dark.jpg");
     background-color: var(--clr-dark-gray-600);
+
+    @include mq(large) {
+      background-image: url("../../assets/images/bg-desktop-dark.jpg");
+    }
   }
 }
