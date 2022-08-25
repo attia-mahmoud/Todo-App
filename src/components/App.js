@@ -27,7 +27,7 @@ function App() {
     <UserContext.Provider value={value}>
       <div className="ff-josefin" data-theme={theme}>
         <main>
-          <Header theme={theme} setTheme={setTheme} />
+          <Header theme={theme} setTheme={setTheme} user={user} />
           {user ? <AuthenticatedScreen /> : <UnauthenticatedScreen />}
         </main>
       </div>

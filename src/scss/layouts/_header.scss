@@ -11,6 +11,13 @@ header {
   }
 
   img {
+    width: 1.5rem;
     cursor: pointer;
+    filter: brightness(0) saturate(100%) invert(100%) sepia(4%) saturate(7483%)
+      hue-rotate(8deg) brightness(103%) contrast(97%);
+  }
+
+  #header-meta {
+    @include flex(1rem, row, center, center);
   }
 }
